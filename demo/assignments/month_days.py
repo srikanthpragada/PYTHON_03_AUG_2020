@@ -7,7 +7,7 @@ if month == 2:
         print(29)
     else:
         print(28)
-elif month in [4, 6, 9, 11]:   # month == 4 or month == 6
+elif month in [4, 6, 9, 11]:  # month == 4 or month == 6
     print(30)
 else:
     print(31)
