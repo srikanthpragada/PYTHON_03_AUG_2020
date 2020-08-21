@@ -4,7 +4,7 @@ class Student:
 
     @staticmethod
     def get_total_fee(course):
-       return Student.totalfees.get(course)
+        return Student.totalfees.get(course)
 
     # Constructor
     def __init__(self, name, course='Python', feepaid=0):
@@ -13,6 +13,16 @@ class Student:
         self.course = course
         self.feepaid = feepaid
 
+    @property
+    def coursename(self):
+        return self.course.upper()
+
+    @coursename.setter
+    def coursename(self, newvalue):
+        if newvalue in Student.totalfees:
+            self.course = newvalue
+        else:
+            raise ValueError("Invalid course name")
 
     # Methods
     def payment(self, amount):
@@ -23,13 +33,24 @@ class Student:
         print(self.course)
         print(self.feepaid)
 
-    def get_due(self):
+    @property
+    def due_amount(self):
         return Student.get_total_fee(self.course) - self.feepaid
+
+    @property
+    def totalfee(self):
+        return Student.get_total_fee(self.course)
+
+    def __str__(self):
+        return f"{self.name} - {self.course} - {self.totalfee} - {self.feepaid}"
 
 
 s = Student("Scott", "Python", 5000)
+print(s)
+s.coursename = "Java"
+print(s.coursename)
+
 s.payment(3000)
 s.print_details()
-print('Due amount :', s.get_due())
-
+print('Due amount :', s.due_amount)
 print(Student.get_total_fee("DS"))
