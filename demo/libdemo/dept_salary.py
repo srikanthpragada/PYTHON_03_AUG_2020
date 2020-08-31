@@ -10,10 +10,13 @@ with open("employees.txt", "rt") as f:
         if len(parts) < 3:
             continue
 
+        if not parts[1].isdigit(): # Ignore if second part is not a number
+            continue
+            
         name = parts[2]
         salary = int(parts[1])
         if name in depts:
-            depts[name] = depts[name] +  salary   # add salary to existing total
+            depts[name] = depts[name] + salary   # add salary to existing total
         else:
             depts[name] = salary  # insert new entry with deptname and salary
 
