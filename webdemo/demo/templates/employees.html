@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <style>
+        body {font-family : calibri; font-size: 14pt; }
+        h2 {color:blue}
+    </style>
+</head>
+<body>
+<h2>Employees</h2>
+
+{% if employees %}
+ <table cellpadding="5px" border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Salary</th>
+    </tr>
+    {% for e in employees %}
+     <tr>
+        <td>{{e.0}}</td>
+        <td>{{e.1}}</td>
+        <td>{{e.2 | upper }}</td>
+        <td style="text-align:right">{{e.3}}</td>
+     </tr>
+    {% endfor %}
+ </table>
+{% else %}
+<h3>Sorry! Could not retrieve employees details!</h3>
+{% endif %}
+
+</body>
+</html>

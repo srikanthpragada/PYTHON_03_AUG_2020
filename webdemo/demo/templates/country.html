@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Country Information</title>
+    <style>
+        body {font-family : calibri; font-size: 14pt; }
+        h2 {color:blue}
+    </style>
+</head>
+<body>
+
+{%if country %}
+<h2>{{country.name}}</h2>
+
+<table cellpadding="5px">
+    <tr>
+        <td>Capital</td>
+        <td>{{country.capital}}</td>
+    </tr>
+    </tr>
+    <tr>
+        <td>Region</td>
+        <td>{{country.region}}</td>
+    </tr>
+    <tr>
+        <td>Area(SQKM)</td>
+        <td>{{country.area}}</td>
+    </tr>
+    <tr>
+        <td>Population</td>
+        <td>{{country.population}}</td>
+    </tr>
+    <tr>
+        <td>Flag</td>
+        <td><img src="{{country.flag}}" style="width:200;height:100px"/></td>
+    </tr>
+</table>
+{% else %}
+<h3>{{message}}</h3>
+{% endif %}
+
+</body>
+</html>
