@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+</head>
+<body>
+<h1>Add Employee</h1>
+<form method="post">
+    {% csrf_token %}
+    Employee Name <br/>
+    <input type="text" name="fullname" size="30" required />*
+    <p></p>
+    Job Title <br/>
+    <input type="text" name="job" size="30" required/>*
+    <p></p>
+    Salary <br/>
+    <input type="number" name="salary" size="10" required/>*
+    <p></p>
+    <input type="submit" value="Add Employee" />
+</form>
+<h3>{{message}}</h3>
+</body>
+</html>
