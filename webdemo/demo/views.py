@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import SalaryUpdateForm
 import requests
 import sqlite3
 
@@ -56,4 +57,44 @@ def add_employee(request):
         except Exception as ex:
             print("Error :", ex)
             return render(request, 'add_employee.html',
-                          {'message': 'Sorry! Could not add employee!'})
+                          {'message': 'Sorry! Could not add employee!',
+                           'fullname': fullname,
+                           'job': job,
+                           'salary': salary
+                           }
+                          )
+
+
+def update_salary(request):
+    if request.method == "GET":
+        f = SalaryUpdateForm()  # unbound form
+        return render(request, 'salary_update.html', {'form': f})
+    else:  # POST
+        f = SalaryUpdateForm(request.POST)   # bound request data to form
+        if f.is_valid():
+            # process
+            id = f.cleaned_data['id']
+            salary = f.cleaned_data['salary']
+            try:
+                con = sqlite3.connect(r"c:\classroom\aug3\hr.db")
+                cur = con.cursor()
+                cur.execute("update employees set salary = ? where id = ?",
+                            (salary,id))
+                if cur.rowcount == 1:
+                    message = 'Updated Salary Successfully!'
+                    con.commit()
+                else:
+                    message = 'Sorry! Employee id not found!'
+
+                con.close()
+            except Exception as ex:
+                print("Error :", ex)
+                message = "Sorry! Could not update salary!"
+        else:
+            message = ""
+
+        return render(request,'salary_update.html',
+                      {'form' : f, 'message' : message})
+
+
+

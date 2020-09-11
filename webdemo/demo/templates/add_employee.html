@@ -9,13 +9,13 @@
 <form method="post">
     {% csrf_token %}
     Employee Name <br/>
-    <input type="text" name="fullname" size="30" required />*
+    <input type="text" name="fullname" size="30" value="{{fullname}}" required />*
     <p></p>
     Job Title <br/>
-    <input type="text" name="job" size="30" required/>*
+    <input type="text" name="job" size="30" value="{{job}}" required/>*
     <p></p>
     Salary <br/>
-    <input type="number" name="salary" size="10" required/>*
+    <input type="number" name="salary" size="10" value="{{salary}}" required/>*
     <p></p>
     <input type="submit" value="Add Employee" />
 </form>
