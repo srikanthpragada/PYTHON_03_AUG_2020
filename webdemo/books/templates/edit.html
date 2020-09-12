@@ -1,0 +1,24 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<h2>Update Book</h2>
+{% if form %}
+<form method="post">
+    {% csrf_token %}
+    Title <br/>
+    {{form.title}}
+    <p></p>
+    Author <br/>
+    {{form.author}}
+    <p></p>
+    Price <br/>
+    {{form.price}}
+    <p></p>
+    <input id="submit_button" type="submit" value="Submit"/>
+</form>
+{% else %}
+<h3>{{msg}}</h3>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function getBooks() {
+       $.get("/books/dosearch?title=" + $("#title").val(),null, showBooks);
+    }
+
+    function showBooks(books) {
+        console.log(books)
+        if (books.length == 0)
+        {
+            $("#books").html("<h3>Sorry! No books found!</h3>");
+            return;
+        }
+        output = "<ul>";
+        for(i=0; i < books.length; i ++)
+             output += "<li>" + books[i].title + " - " + books[i].price + "</li>";
+
+        output += "</ul>";
+        $("#books").html(output)
+    }
+
+</script>
+
+<h2>Search</h2>
+
+Title : <input type="text" id="title" value="{{title}}"/>
+<button onclick="getBooks()">Go</button>
+<p></p>
+<div id="books">
+
+</div>
+
+{% endblock %}

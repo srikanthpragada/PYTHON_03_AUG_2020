@@ -1,0 +1,33 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<h2>List of Books</h2>
+
+<table width="100%">
+    <tr class="colhead">
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>
+        </th>
+    </tr>
+
+    {% for book in books %}
+    <tr>
+        <td style="text-align:center">{{book.id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td style="text-align:right">{{book.price}}</td>
+        <td style="text-align:center">
+            <a href="/books/edit/{{book.id}}">Edit</a>
+            <a onclick="return confirm('Do you want to delete book?')"
+               href="/books/delete/{{book.id}}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

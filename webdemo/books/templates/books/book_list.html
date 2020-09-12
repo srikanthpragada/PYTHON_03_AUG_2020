@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<h1>Books</h1>
+
+<ul>
+    <!-- default name is object_list, modified in class view  -->
+    {% for book in books %}
+         <li>{{ book.title }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
