@@ -13,6 +13,7 @@ urlpatterns = [
     path('dosearch/', views.book_do_search),
 
     # Class based views
+    path("about/", class_views.AboutView.as_view()),
     path("hello/", class_views.HelloView.as_view()),
     path("listbooks/", class_views.ListBooksView.as_view()),
 
