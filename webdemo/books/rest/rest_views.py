@@ -16,10 +16,10 @@ class BookSerializer(serializers.ModelSerializer):
 def process_books(request):
     if request.method == "GET":
         books = Book.objects.all()
-        serializer = BookSerializer(books, many=True)
+        serializer = BookSerializer(books, many=True)   # JSON Serialization
         return Response(serializer.data)
     else:  # Post
-        book = BookSerializer(data=request.data)
+        book = BookSerializer(data=request.data) # JSON Deserialization
         if book.is_valid():
             book.save()  # insert into table
             return Response(book.data)
@@ -43,7 +43,11 @@ def process_one_book(request, id):
     else:  # PUT
         price = request.POST['price']
         book.price = price
-        book.save()  # Update table in DB
-        serializer = BookSerializer(book)
-        return Response(serializer.data)
+        try:
+            book.save()  # Update table in DB
+            serializer = BookSerializer(book)
+            return Response(serializer.data)
+        except Exception as ex:
+            print(ex)
+            return Response(status=500)  # Internal error
 
